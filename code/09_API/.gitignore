@@ -1,0 +1,11 @@
+playground.ipynb
+.env
+.gitrepo
+test.json
+__pycache__/
+code/02_Modeles/mlruns/
+error.json
+airflow-training-key.pem
+__pycache__
+.env
+logs

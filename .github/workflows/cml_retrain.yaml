@@ -1,0 +1,28 @@
+name: Continuous Training Pipeline
+
+on:
+  push:
+    paths:
+      - code/02_Modeles/**
+  workflow_dispatch:
+
+jobs:
+  trigger-airflow:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Python Dependencies
+        run: pip install requests
+
+      - name: Trigger Airflow DAG
+        env:
+          AIRFLOW_URL: ${{ secrets.AIRFLOW_URL }}
+          AIRFLOW_USER: ${{ secrets.AIRFLOW_USERNAME }}
+          AIRFLOW_PASS: ${{ secrets.AIRFLOW_PASSWORD }}
+          DAG_ID: "github_ec2_ml_training"
+        run: |
+          # Run the python script, passing the commit hash as an argument
+          python scripts/trigger_airflow.py ${{ github.sha }}
+

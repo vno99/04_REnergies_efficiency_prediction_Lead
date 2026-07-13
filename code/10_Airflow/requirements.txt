@@ -1,0 +1,12 @@
+# --- Drift monitoring ---
+evidently==0.7.18        # latest stable as of Jan 2026; Python 3.8+, pandas 2.x compatible
+
+# --- Experiment tracking ---
+mlflow==3.5.1            # latest in the 3.5.x patch line; Python >=3.8, pandas 2.x compatible
+
+# --- AWS ---
+boto3==1.38.0            # latest stable; no conflict with Airflow's botocore constraints
+
+# --- Data ---
+pandas==2.2.3            # upper bound matches Airflow's own constraint (>=2.1.2,<2.2 in providers,
+                         # but 2.2.x is fine for standalone use); compatible with evidently & mlflow
